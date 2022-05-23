@@ -1,13 +1,12 @@
 #bibliotecas
 import emoji
 import random
-import pygame
-pygame.init()
-
+from pygame import mixer
+mixer.init()
 #sons
-perdi = pygame.mixer.Sound('gameover.mp3.wav')
-ganhei = pygame.mixer.Sound('coin.mp3.wav')
-encerrei = pygame.mixer.Sound('winningmusic.wav')       
+perdi = mixer.Sound('gameover.mp3.wav')
+ganhei =mixer.Sound('coin.mp3.wav')
+encerrei = mixer.Sound('winningmusic.wav')       
 
 
 #cabecçalho
@@ -45,12 +44,12 @@ while True:
             print(emoji.emojize('Papel! :hand_with_fingers_splayed:'))
             print('\033[0;32mGanhei!!\033[m Papel cobre preda!')
             contadorP = contadorP + 1
-            perdi.play
+            perdi.play()
         else:
             print(emoji.emojize('Tesoura! :victory_hand:'))
-            print('Mas o que.. Perdi! Pedra quebra Tesoura...!')
+            print('Mas o que.. \033[0;31mPerdi!\033[m, Pedra quebra Tesoura...!')
             contadorG = contadorG + 1
-            ganhei.play
+            ganhei.play()
 
 
     elif usuario.capitalize() == 'Papel':
@@ -61,14 +60,14 @@ while True:
             contadorE = contadorE + 1
         elif pc == 'Pedra':
             print(emoji.emojize('Pedra! :oncoming_fist:'))
-            print('Perdi!!...Papel cobre preda!')
+            print('\033[0;31mPerdi!!\033[m...Papel cobre preda!')
             contadorG = contadorG + 1
-            ganhei.play
+            ganhei.play()
         else:
             print(emoji.emojize('Tesoura! :victory_hand:'))
             print(emoji.emoji.emojize('\033[0;32m Ganhei!!\033[m Tesoura corta papel!'))
             contadorP = contadorP+ 1
-            perdi.play
+            perdi.play()
 
     elif usuario.capitalize() == 'Tesoura':
         print(emoji.emojize(':victory_hand:'))
@@ -80,19 +79,19 @@ while True:
             print(emoji.emojize('Pedra! :oncoming_fist:'))
             print('\033[0;32m Ganhei!!\033[m Pedra quebra Tesoura!')
             contadorP = contadorP + 1
-            perdi.play
+            perdi.play()
         else:
             print(emoji.emojize('Papel! :hand_with_fingers_splayed:'))
-            print('Mas como?! Você ganhou...Tesoura corta papel...')
+            print('Mas como?! Eu \033[0;31mperdi\033[m...Tesoura corta papel...')
             contadorG = contadorG + 1
-            ganhei.play
+            ganhei.play()
 
     #repetição
     repeticao = input('Quer jogar mais uma vez?')
     while repeticao[0].capitalize() != 'N' and repeticao[0].capitalize() != 'S':
         repeticao = input('Não entendi, digite "sim" ou "não"')
     if repeticao[0].capitalize() == 'N':
-        encerrei.play
-        print(f'Ah que pena! \nVocê ganhou {contadorG} vezes, perdeu {contadorP} e empatamos {contadorE} vezes! \nObrigade por jogar comigo.\nAté mais!')
+        encerrei.play()
+        print(f'Ah que pena! \nVocê ganhou \033[0;32m{contadorG}\033[m vezes, perdeu \033[0;31m{contadorP}\033[m e empatamos {contadorE} vezes! \nObrigade por jogar comigo.\nAté mais!')
         break    
     
